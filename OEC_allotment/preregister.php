@@ -15,26 +15,26 @@
         //to get the session as input from the user
         $session = $_POST['session']; 
 
-        $stud_sem = mysqli_query($conn, "select * from u_student where regno = '$regno';");
-        $sem = mysqli_fetch_assoc($stud_sem);
-        if(1 || $sem['CURR_SEM'] >= 4 && $sem['CURR_SEM'] <= 7){
+        $stud_sem = $conn -> query ("select * from u_student where regno = '$regno';");
+        $sem = $stud_sem -> fetchAll(PDO::FETCH_ASSOC);
+        if(1 || $sem[0]['CURR_SEM'] >= 4 && $sem[0]['CURR_SEM'] <= 7){
             //eligible to register for oec
             //display a drop down menu with the available oecs
 
             //check if the capacity is reached for an oec before displaying it
 
-            $fetch_oec = mysqli_query($conn, "select e.course_code, c.course_name, c.course_type 
+            $fetch_oec = $conn -> query("select e.course_code, c.course_name, c.course_type 
             from u_prgm_elective_course e 
             inner join u_course c 
             on e.no_of_students_enrolled < e.capacity 
             and e.session = '$session' 
             and c.course_type = 'OEC';");
 
-            $fetch_stud_details = mysqli_query($conn, "select sname, curr_sem, credits_earned from u_student where regno = '$regno';");
-            $n = mysqli_num_rows($fetch_stud_details);
+            $fetch_stud_details = $conn -> query("select sname, curr_sem, credits_earned from u_student where regno = '$regno';");
+            $n = $fetch_stud_details->fetch(PDO::MYSQL_ATTR_FOUND_ROWS);
             echo($n);
 
-            $stud_data = mysqli_fetch_assoc($fetch_stud_details);
+            $stud_data = $fetch_stud_details -> fetchAll(PDO::FETCH_ASSOC);
             print_r($stud_data);
 
             //display the rows fetched in this query in drop-down menu
