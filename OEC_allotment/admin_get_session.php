@@ -12,19 +12,21 @@
         <!-- Session as input -->
         <div class="input_session">
             <div class="label_session">
-                <label for="select_session">Session:</label>
+                <label>Enter Session</label>
             </div>
-            <select name="session" id="select_session">
-                <option value="">Please choose the session</option>
-                <option value="18B">Nov - 2018</option>
-                <option value="19A">May - 2019</option>
-                <option value="19B">Nov - 2019</option>
-                <option value="20A">May - 2020</option>
-                <option value="20B">Nov - 2020</option>
-                <option value="21A">May - 2021</option>
-                <option value="20B">Nov - 2021</option>
-                <option value="21A">May - 2022</option>
+
+            <div class="label_session_month">
+                <label for="session_month">Month:</label>
+            </div>
+            <select name="session_month" id="session_month">
+                <option value="A">May</option>
+                <option value="B">November</option>
             </select>
+
+            <div class="label_session_year">
+                <label for="session_year">Year:</label>
+            </div>
+            <input type="number" name="session_year" id="session_year">
         </div>
         
         <input type="submit" value="Proceed" name="submit_session" class = "submit_session">
